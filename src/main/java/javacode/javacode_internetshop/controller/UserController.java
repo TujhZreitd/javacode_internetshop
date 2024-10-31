@@ -2,7 +2,6 @@ package javacode.javacode_internetshop.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
 import javacode.javacode_internetshop.model.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +10,14 @@ import javacode.javacode_internetshop.view.Views;
 
 import java.util.List;
 
-@AllArgsConstructor
 @RestController
 @RequestMapping("api/users")
 public class UserController {
 
     private final UserService userService;
+    public UserController(UserService simpleUserService) {
+        this.userService = simpleUserService;
+    }
 
     @GetMapping
     @JsonView(Views.UserSummary.class)

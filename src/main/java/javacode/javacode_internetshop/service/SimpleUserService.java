@@ -11,11 +11,13 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class SimpleUserService implements UserService {
+
     private final UserRepository userRepository;
     @Override
     public User create(User user) {
         return userRepository.save(user);
     }
+
     @Override
     public User update(User user) {
         Optional<User> optionalUser = userRepository.findById(user.getId());
@@ -27,6 +29,7 @@ public class SimpleUserService implements UserService {
         userNew.setEmail(user.getEmail());
         return userRepository.save(userNew);
     }
+
     @Override
     public User findById(int id) {
         Optional<User> userOptional = userRepository.findById(id);
@@ -35,6 +38,7 @@ public class SimpleUserService implements UserService {
         }
         return userOptional.get();
     }
+
     @Override
     public void deleteById(int id) {
         Optional<User> userOptional = userRepository.findById(id);
@@ -44,6 +48,7 @@ public class SimpleUserService implements UserService {
             userRepository.deleteById(id);
         }
     }
+
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
