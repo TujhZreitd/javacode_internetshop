@@ -1,6 +1,8 @@
 package javacode.javacode_internetshop.service;
 
 import javacode.javacode_internetshop.exception.UserNotFoundException;
+import javacode.javacode_internetshop.model.Order;
+import javacode.javacode_internetshop.repository.OrderRepository;
 import lombok.AllArgsConstructor;
 import javacode.javacode_internetshop.model.User;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import java.util.Optional;
 public class SimpleUserService implements UserService {
 
     private final UserRepository userRepository;
+    private final OrderRepository orderRepository;
     @Override
     public User create(User user) {
         return userRepository.save(user);
@@ -36,7 +39,10 @@ public class SimpleUserService implements UserService {
         if (userOptional.isEmpty()) {
             throw new UserNotFoundException(id);
         }
-        return userOptional.get();
+        List<Order> orders = orderRepository.findByUserId(id);
+        User user = userOptional.get();
+        user.setOrders(orders);
+        return user;
     }
 
     @Override

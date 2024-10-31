@@ -1,6 +1,5 @@
 package javacode.javacode_internetshop.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -16,6 +15,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "users")
 public class User {
 
     @Id
@@ -32,7 +32,6 @@ public class User {
     @Email(message = "Email should be valid")
     private String email;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JsonView(Views.UserDetails.class)
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
