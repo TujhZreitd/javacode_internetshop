@@ -13,9 +13,9 @@ import java.math.BigDecimal;
 public class Order {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int userId;
+
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
     private String name;
     private BigDecimal amount;
