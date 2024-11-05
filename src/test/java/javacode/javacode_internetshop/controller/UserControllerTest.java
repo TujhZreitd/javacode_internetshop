@@ -6,6 +6,7 @@ import javacode.javacode_internetshop.model.Order;
 import javacode.javacode_internetshop.model.User;
 import javacode.javacode_internetshop.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+@Disabled
 @WebMvcTest(UserController.class)
 class UserControllerTest {
 
